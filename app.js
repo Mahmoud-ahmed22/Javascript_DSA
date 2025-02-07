@@ -75,6 +75,62 @@ class LinkedList {
 
     }
 
+    // Get Index
+
+    getIndex(value) {
+        let current = this.head;
+        let count = 0;
+
+        while(current) {
+            if (count === value) {
+                console.log(current);
+            }
+
+            count++;
+            current = current.next;
+        }
+
+        return;
+    }
+
+
+    // Remove at Index
+
+    removeAtIndex(index) {
+        let current = this.head;
+        let prev = current;
+        let count = 0;
+
+        // if empty
+
+        if(index > 0 && index >= this.size) {
+            console.log("Out of range");
+            return;
+        }
+        
+        if (index === 0) {
+            this.head = current.next;
+            current = null;
+            return;
+        }
+
+        while(current) {
+
+            if (count === index) {
+                prev.next = current.next;
+                current = null;
+                return;
+            }
+
+            prev = current;
+            current = current.next;
+            count++;
+        }
+
+        this.size--;
+        return;
+    }
+
     // Print all data
 
     PrintAllData() {
@@ -85,6 +141,13 @@ class LinkedList {
             current = current.next;
         }
     }
+
+    // Clear Linkedlist
+
+    clearList() {
+        this.head = null;
+        this.size = 0;
+    }
 }
 
 const ll = new LinkedList();
@@ -93,4 +156,11 @@ ll.insertLast(300);
 ll.insertLast(200);
 ll.insertFirst(400);
 ll.insertIndex(600,0);
+ll.PrintAllData();
+ll.removeAtIndex(3);
+console.log("###################");
+ll.PrintAllData();
+
+ll.clearList();
+
 ll.PrintAllData();
